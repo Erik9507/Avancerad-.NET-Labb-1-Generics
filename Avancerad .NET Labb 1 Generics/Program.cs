@@ -8,7 +8,7 @@ namespace Avancerad_.NET_Labb_1_Generics
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args) 
         {
             LådaCollection Boxes = new LådaCollection();
             Boxes.Add(new Låda(10, 10, 10));
