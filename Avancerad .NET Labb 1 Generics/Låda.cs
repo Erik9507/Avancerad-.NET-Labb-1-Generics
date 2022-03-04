@@ -18,12 +18,16 @@ namespace Avancerad_.NET_Labb_1_Generics
         public int bredd { get; set; }
         public override string ToString()
         {
-            return "Höjd: " + höjd + " " + "Bredd: " + bredd + " " + "Längd: " + längd;
+            return "Höjd: " + höjd + " " + "Bredd: " + bredd + " " + "Längd: " + längd + "          hachCode " + GetHashCode();
         }
 
         public bool Equals(Låda other)
         {
             if (new LådaSameDimensions().Equals(this, other))
+            {
+                return true;
+            }
+            else if (new LådaSameVol().Equals(this, other))
             {
                 return true;
             }
@@ -44,25 +48,6 @@ namespace Avancerad_.NET_Labb_1_Generics
         }
     }
 
-    public class LådaSameDimensions : EqualityComparer<Låda>
-    {    
-        public override bool Equals([AllowNull] Låda x, [AllowNull] Låda y)
-        {
-            if (x.höjd == y.höjd && x.längd == y.längd && x.bredd == y.bredd)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public override int GetHashCode([DisallowNull] Låda obj)
-        {
-            int HashCode = obj.höjd ^ obj.längd ^ obj.bredd;
-            return HashCode.GetHashCode();
-        }
-        
-    }
+    
     
 }

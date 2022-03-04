@@ -11,62 +11,46 @@ namespace Avancerad_.NET_Labb_1_Generics
 
         public IEnumerator<Låda> GetEnumerator()
         {
-            return innerCol.GetEnumerator();
+            return collection.GetEnumerator();
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
         }
-
-        //  inner collection to store objects.
-        private List<Låda> innerCol;
-
+        private List<Låda> collection;
         public int Count => throw new NotImplementedException();
-
         public bool IsReadOnly => throw new NotImplementedException();
-
         public LådaCollection()
         {
-            innerCol = new List<Låda>();
+            collection = new List<Låda>();
         }
-
-        // Adds an index to the collection.
-        public Låda this[int index]
-        {
-            get { return (Låda)innerCol[index]; }
-            set { innerCol[index] = value; }
-        }
-
+   
 
         public bool Contains(Låda item)
         {
             bool found = false;
 
-            foreach (Låda bx in innerCol)
+            foreach (Låda bx in collection)
             {
-
                 if (bx.Equals(item))
                 {
                     found = true;
                 }
             }
-
             return found;
         }
-
 
         public bool Contains(Låda item, EqualityComparer<Låda> comp)
         {
             bool found = false;
 
-            foreach (Låda bx in innerCol)
+            foreach (Låda l in collection)
             {
-                if (comp.Equals(bx, item))
+                if (comp.Equals(l, item))
                 {
                     found = true;
                 }
             }
-
             return found;
         }
 
@@ -74,18 +58,18 @@ namespace Avancerad_.NET_Labb_1_Generics
         {
             if (Contains(item))
             {
-                Console.WriteLine("Box with the same dimentions already exists");
+                Console.WriteLine("Lådan finns redan i listan");
             }
             else
             {
-                innerCol.Add(item);
-                Console.WriteLine("Added item to the list");
+                collection.Add(item);
+                Console.WriteLine("Låda tillagd i listan");
             }          
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            collection.Clear();
         }
 
         public void CopyTo(Låda[] array, int arrayIndex)
@@ -96,15 +80,14 @@ namespace Avancerad_.NET_Labb_1_Generics
         public bool Remove(Låda item)
         {
             bool result = false;
-
-            // Iterate the inner collection to
-            // find the box to be removed.
-            for (int i = 0; i < innerCol.Count; i++)
+            for (int i = 0; i < collection.Count; i++)
             {
-                Låda låda = (Låda)innerCol[i];
+                Låda låda = (Låda)collection[i];
                 if (new LådaSameDimensions().Equals(låda, item))
                 {
-                    innerCol.RemoveAt(i);
+                    Console.WriteLine("Objekt med dimensionerna " + item.bredd + "*" + item.längd + "*" + item.höjd + " tas bort");
+                    collection.RemoveAt(i);
+                    
                     result = true;
                     break;
                 }

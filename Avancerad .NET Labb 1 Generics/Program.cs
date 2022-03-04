@@ -10,6 +10,7 @@ namespace Avancerad_.NET_Labb_1_Generics
     {
         static void Main(string[] args) 
         {
+            //lägger till låder
             LådaCollection Boxes = new LådaCollection();
             Boxes.Add(new Låda(10, 10, 10));
             Boxes.Add(new Låda(20, 20, 20));
@@ -18,13 +19,18 @@ namespace Avancerad_.NET_Labb_1_Generics
             Boxes.Add(new Låda(50, 50, 50));
 
 
+            //lägger till låda som redan finns
             Boxes.Add(new Låda(10, 10, 10));
+
+            //tar bort låda
             Boxes.Remove(new Låda(10, 10, 10));
 
 
+            //visar alla lådor 
             DisplayBoxes(Boxes);
 
-            if (Boxes.Contains(new Låda(50,50,50)))
+            //kollar om collection contains objekt
+            if (Boxes.Contains(new Låda(1,5,3)))
             {
                 Console.WriteLine("Låda finns");
             }
